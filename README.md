@@ -2,7 +2,6 @@
 
 Use a gmail account for notifications. Program still prone to some exceptions and does not handle:
 - connection issues
-- math (divison by 0)
 - other issues which may be caused by the json returned from bittrex
 
 Usage:
