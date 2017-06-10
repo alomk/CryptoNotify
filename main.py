@@ -30,7 +30,7 @@ def calculateChange():
 
 def evaluate():
     for i in change:
-        if((change[i]['Percent Change'] <= -5 and change[i]['Volume'] >= 200 and change[i]['Name'][0] != 'E') or change[i]['Name'] == 'BTC-XRP'):
+        if(change[i]['Percent Change'] <= -5 and change[i]['Volume'] >= 200 and change[i]['Name'][0] != 'E'):
             notify(change[i])
       
 def notify(coin):
