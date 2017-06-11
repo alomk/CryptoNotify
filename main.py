@@ -46,7 +46,7 @@ def notify(coin):
     print 'Sent!'
 
 
-delay = 900
+delay = 720
 change = {}
 old = json.loads(requests.get('https://bittrex.com/api/v1.1/public/getmarketsummaries').text)
 time.sleep(delay)
