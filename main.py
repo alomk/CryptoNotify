@@ -25,12 +25,12 @@ def calculateChange():
         try:
             change[old['result'][i]['MarketName']] = {'Name':old['result'][i]['MarketName'].encode('ASCII'),'Percent Change':((new['result'][i]['Last'] - old['result'][i]['Last'])/(old['result'][i]['Last'])) * 100,'Volume': new['result'][i]['BaseVolume'],'Price': new['result'][i]['Last'],'Time':str(datetime.datetime.now())}
         except:
-            print 'Exception'
+            print 'Exception ' + str(old['result'][i]['MarketName'])
             change[old['result'][i]['MarketName']] = {'Name':old['result'][i]['MarketName'].encode('ASCII'),'Percent Change':0,'Volume': new['result'][i]['BaseVolume'],'Price': new['result'][i]['Last'],'Time':str(datetime.datetime.now())} 
 
 def evaluate():
     for i in change:
-        if(change[i]['Percent Change'] <= -5 and change[i]['Volume'] >= 200 and change[i]['Name'][0] != 'E'):
+        if((change[i]['Percent Change'] <= -5 and change[i]['Volume'] >= 200 and change[i]['Name'][0] != 'E')):
             notify(change[i])
       
 def notify(coin):
@@ -46,7 +46,7 @@ def notify(coin):
     print 'Sent!'
 
 
-delay = 720
+delay = 900
 change = {}
 old = json.loads(requests.get('https://bittrex.com/api/v1.1/public/getmarketsummaries').text)
 time.sleep(delay)
