@@ -22,11 +22,13 @@ def calculateChange():
     del change
     change = {}
     for i in range(len(old['result'])):
-        try:
-            change[old['result'][i]['MarketName']] = {'Name':old['result'][i]['MarketName'].encode('ASCII'),'Percent Change':((new['result'][i]['Last'] - old['result'][i]['Last'])/(old['result'][i]['Last'])) * 100,'Volume': new['result'][i]['BaseVolume'],'Price': new['result'][i]['Last'],'Time':str(datetime.datetime.now())}
-        except:
-            print 'Exception ' + str(old['result'][i]['MarketName'])
-            change[old['result'][i]['MarketName']] = {'Name':old['result'][i]['MarketName'].encode('ASCII'),'Percent Change':0,'Volume': 0,'Price': 0,'Time':str(datetime.datetime.now())} 
+        for j in range(len(old['result'])):
+            if(old['result'][i]['MarketName'] == new['result'][i]['MarketName']):
+                try:
+                    change[old['result'][i]['MarketName']] = {'Name':old['result'][i]['MarketName'].encode('ASCII'),'Percent Change':((new['result'][i]['Last'] - old['result'][i]['Last'])/(old['result'][i]['Last'])) * 100,'Volume': new['result'][i]['BaseVolume'],'Price': new['result'][i]['Last'],'Time':str(datetime.datetime.now())}
+                except:
+                    #print 'Exception ' + str(old['result'][i]['MarketName'])
+                    continue
 
 def evaluate():
     for i in change:
