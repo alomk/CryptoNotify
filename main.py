@@ -23,12 +23,15 @@ def calculateChange():
     change = {}
     for i in range(len(old['result'])):
         for j in range(len(old['result'])):
-            if(old['result'][i]['MarketName'] == new['result'][i]['MarketName']):
-                try:
-                    change[old['result'][i]['MarketName']] = {'Name':old['result'][i]['MarketName'].encode('ASCII'),'Percent Change':((new['result'][i]['Last'] - old['result'][i]['Last'])/(old['result'][i]['Last'])) * 100,'Volume': new['result'][i]['BaseVolume'],'Price': new['result'][i]['Last'],'Time':str(datetime.datetime.now())}
-                except:
-                    #print 'Exception ' + str(old['result'][i]['MarketName'])
-                    continue
+            try:
+                if(old['result'][i]['MarketName'] == new['result'][i]['MarketName']):
+                    try:
+                        change[old['result'][i]['MarketName']] = {'Name':old['result'][i]['MarketName'].encode('ASCII'),'Percent Change':((new['result'][i]['Last'] - old['result'][i]['Last'])/(old['result'][i]['Last'])) * 100,'Volume': new['result'][i]['BaseVolume'],'Price': new['result'][i]['Last'],'Time':str(datetime.datetime.now())}
+                    except:
+                        #print 'Exception ' + str(old['result'][i]['MarketName'])
+                        continue
+            except:
+                print "Caught index out of bounds"
 
 def evaluate():
     for i in change:
