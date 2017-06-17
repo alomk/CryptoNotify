@@ -21,8 +21,8 @@ def calculateChange():
     global change
     del change
     change = {}
-    for i in range(len(old['result'])):
-        for j in range(len(old['result'])):
+    for i in range(len(new['result'])):
+        for j in range(len(new['result'])):
             try:
                 if(old['result'][i]['MarketName'] == new['result'][i]['MarketName']):
                     try:
@@ -31,7 +31,11 @@ def calculateChange():
                         #print 'Exception ' + str(old['result'][i]['MarketName'])
                         continue
             except:
+                print str(len(new['result'])) + ' is new length'
+                print str(len(old['result'])) + ' is old length'
                 print "Caught index out of bounds"
+                return
+
 
 def evaluate():
     for i in change:
