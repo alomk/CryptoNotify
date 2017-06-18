@@ -44,7 +44,7 @@ def evaluate():
       
 def notify(coin):
     msg = """From: %s\nTo: %s\nSubject: %s\n\n%s
-    """ % (username, ", ".join(username), coin['Name'] + ' at ' + coin['Time'], coin)
+    """ % (username, ", ".join([username]), coin['Name'] + ' at ' + coin['Time'], coin)
 
     server = smtplib.SMTP('smtp.gmail.com:587')
     server.starttls()
