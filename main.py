@@ -40,13 +40,13 @@ def evaluate():
       
 def notify(coin):
     msg = """From: %s\nTo: %s\nSubject: %s\n\n%s
-    """ % (fromaddr, ", ".join(toaddr), coin['Name'] + ' at ' + coin['Time'], coin)
+    """ % (username, ", ".join(username), coin['Name'] + ' at ' + coin['Time'], coin)
 
     server = smtplib.SMTP('smtp.gmail.com:587')
     server.starttls()
     print 'Sending... ' + coin['Name'] + ' at ' + coin['Time']
     server.login(username,password)
-    server.sendmail(fromaddr,toaddr,msg)
+    server.sendmail(username,username,msg)
     server.quit
     print 'Sent!'
 
@@ -60,8 +60,7 @@ new = json.loads(requests.get('https://bittrex.com/api/v1.1/public/getmarketsumm
 login = open('login.conf','r')
 username = login.readline()
 password = login.readline()
-fromaddr = login.readline().replace("\n", "")
-toaddr = [login.readline().replace("\n", "")]
+
 
 calculateChange()
 evaluate()
