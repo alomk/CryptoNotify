@@ -39,9 +39,9 @@ def calculateChange():
 
 def evaluate():
     for i in change:
-        if((change[i]['Change'] >= 30 and change[i]['Name'][0] == 'B' and change[i]['Volume'] >= 100)):
+        if((change[i]['Change'] >= 1.2*change[i]['Volume'] and change[i]['Name'][0] == 'B' and change[i]['Volume'] >= 100)):
             notifyIncrease(change[i])
-        elif(change[i]['Change'] <= -30 and change[i]['Name'][0] == 'B' and change[i]['Volume'] >= 100):
+        elif(change[i]['Change'] <= -1.2*change[i]['Volume'] and change[i]['Name'][0] == 'B' and change[i]['Volume'] >= 100):
             notifyDecrease(change[i])
       
 def notifyIncrease(coin):
