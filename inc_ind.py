@@ -39,7 +39,7 @@ def calculateChange():
 
 def evaluate():
     for i in change:
-        if((change[i]['Percent Change'] >= 10 and (change[i]['Volume'] >= 100 and change[i]['Volume'] <= 300) and change[i]['Name'][0] != 'E')):
+        if((change[i]['Percent Change'] >= 5 and (change[i]['Volume'] >= 100 and change[i]['Volume'] <= 300) and change[i]['Name'][0] != 'E')):
             notify(change[i])
       
 def notify(coin):
