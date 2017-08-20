@@ -24,8 +24,9 @@ def notify(coin, eventCase):
     server.quit
     print 'Sent!'
 
-def sendImage(img, msg):
+#def sendImage(img, msg):
     #todo
+
 
 
 login = open('login.conf','r')
