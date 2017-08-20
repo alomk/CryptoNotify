@@ -6,6 +6,7 @@ import datetime
 import copy
 from notifications import notify
 
+
 def update():
     global old
     global new
@@ -26,7 +27,7 @@ def calculateChange():
             try:
                 if(old['result'][i]['MarketName'] == new['result'][i]['MarketName']):
                     try:
-                        change[old['result'][i]['MarketName']] = {'Name':old['result'][i]['MarketName'].encode('ASCII'),'Percent Change':((new['result'][i]['Last'] - old['result'][i]['Last'])/(old['result'][i]['Last'])) * 100,'Volume': new['result'][i]['BaseVolume'],'Price': new['result'][i]['Last'],'Time':str(datetime.datetime.now())}
+                        change[old['result'][i]['MarketName']] = {'Name':old['result'][i]['MarketName'].encode('ASCII'),'Change':((new['result'][i]['BaseVolume'] - old['result'][i]['BaseVolume'])),'Volume': new['result'][i]['BaseVolume'],'Price': new['result'][i]['Last'],'Time':str(datetime.datetime.now())}
                     except:
                         #print 'Exception ' + str(old['result'][i]['MarketName'])
                         continue
@@ -39,8 +40,10 @@ def calculateChange():
 
 def evaluate():
     for i in change:
-        if((change[i]['Percent Change'] <= -5 and change[i]['Volume'] >= 200 and change[i]['Name'][0] != 'E')):
-            notify(change[i],0)
+        if((change[i]['Change'] >= 1.1*change[i]['Volume'] and change[i]['Name'][0] == 'B' and change[i]['Volume'] >= 100)):
+            notify(change[i],3)
+        elif(change[i]['Change'] <= -1.1*change[i]['Volume'] and change[i]['Name'][0] == 'B' and change[i]['Volume'] >= 100):
+            notify(change[i],2)
       
 delay = 900
 change = {}

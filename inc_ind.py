@@ -3,8 +3,8 @@ import json
 import sys
 import time
 import datetime
-import smtplib
 import copy
+from notifications import notify
 
 def update():
     global old
@@ -40,31 +40,11 @@ def calculateChange():
 def evaluate():
     for i in change:
         if((change[i]['Percent Change'] >= 5 and (change[i]['Volume'] >= 100 and change[i]['Volume'] <= 300) and change[i]['Name'][0] != 'E')):
-            notify(change[i])
+            notify(change[i], 1)
       
-def notify(coin):
-    msg = """From: %s\nTo: %s\nSubject: %s\n\n%s
-    """ % (username.replace("\n",""), ", ".join([username.replace("\n","")]), coin['Name'] + ' increasing at ' + coin['Time'], coin)
-
-    server = smtplib.SMTP('smtp.gmail.com:587')
-    server.starttls()
-    print 'Sending... ' + coin['Name'] + ' at ' + coin['Time']
-    server.login(username,password)
-    server.sendmail(username,username,msg)
-    server.quit
-    print 'Sent!'
-
-
-delay = 240
-change = {}
 old = json.loads(requests.get('https://bittrex.com/api/v1.1/public/getmarketsummaries').text)
 time.sleep(delay)
 new = json.loads(requests.get('https://bittrex.com/api/v1.1/public/getmarketsummaries').text)
-
-login = open('login.conf','r')
-username = login.readline()
-password = login.readline()
-
 
 calculateChange()
 evaluate()
