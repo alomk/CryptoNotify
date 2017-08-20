@@ -43,6 +43,7 @@ def evaluate():
             notify(change[i], 1)
 
 delay = 240
+change = {}
 old = json.loads(requests.get('https://bittrex.com/api/v1.1/public/getmarketsummaries').text)
 time.sleep(delay)
 new = json.loads(requests.get('https://bittrex.com/api/v1.1/public/getmarketsummaries').text)
