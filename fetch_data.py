@@ -22,13 +22,14 @@ def update():
 
     for i in data['result']:
         volumes[i['MarketName']] = [i['BaseVolume']]
+    
+    times.append(int(time.time()))
 
-    for i in range(10):
+    for i in range(144):
         time.sleep(interval)
         data = json.loads(requests.get('https://bittrex.com/api/v1.1/public/getmarketsummaries').text)
         for j in data['result']:
-            volumes[j['MarketName']].append(j['BaseVolume'])
-            times.append(int(time.time()))
+            volumes[j['MarketName']].append(j['BaseVolume'])    
             open('/home/kazi/CryptoNotify/data/%s'%(timestamp), 'w').close()
             outputVol = open('/home/kazi/CryptoNotify/data/%s'%(timestamp),'w')
             pickle.dump(volumes,outputVol)
@@ -36,6 +37,7 @@ def update():
             #outputTime.write(times)
             outputVol.close()
         
+        times.append(int(time.time())) 
         open('/home/kazi/CryptoNotify/data/%s_times'%(timestamp), 'w').close()
         outputTime = open('/home/kazi/CryptoNotify/data/%s_times'%(timestamp),'w')
         pickle.dump(times,outputTime)
@@ -50,6 +52,6 @@ def update():
 volumes = {}
 times = []
 
-interval = 10 #in seconds
+interval = 600 #in seconds
 
 update()
