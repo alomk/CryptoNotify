@@ -10,6 +10,8 @@ def notify(coin, eventCase):
         event = ' volume decreasing'
     elif eventCase==3:
         event = ' volume increasing'
+    elif eventCase==4:
+        event = 'Possible pump '
     else:
         event = ' decreasing'
     
