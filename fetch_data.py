@@ -47,7 +47,7 @@ def update():
         
     
 
-    #update()
+    update()
 
 volumes = {}
 times = []
