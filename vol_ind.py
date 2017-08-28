@@ -40,12 +40,12 @@ def calculateChange():
 
 def evaluate():
     for i in change:
-        if((change[i]['Change'] >= 1.1*change[i]['Volume'] and change[i]['Name'][0] == 'B' and change[i]['Volume'] >= 100)):
+        if((change[i]['Change'] >= 0.03*change[i]['Volume'] and change[i]['Name'][0] == 'B' and change[i]['Volume'] >= 25)):
             notify(change[i],3)
-        elif(change[i]['Change'] <= -1.1*change[i]['Volume'] and change[i]['Name'][0] == 'B' and change[i]['Volume'] >= 100):
+        elif(change[i]['Change'] <= -0.1*change[i]['Volume'] and change[i]['Name'][0] == 'B' and change[i]['Volume'] >= 25):
             notify(change[i],2)
       
-delay = 900
+delay = 30
 change = {}
 old = json.loads(requests.get('https://bittrex.com/api/v1.1/public/getmarketsummaries').text)
 time.sleep(delay)
