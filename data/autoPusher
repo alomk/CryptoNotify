@@ -1,0 +1,1 @@
+while true; do sleep 43200; git add .; git commit -m "$(date)"; git push; done
