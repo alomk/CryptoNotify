@@ -40,9 +40,9 @@ def calculateChange():
 
 def evaluate():
     for i in change:
-        if((change[i]['Change'] >= 0.03*change[i]['Volume'] and change[i]['Name'][0] == 'B' and change[i]['Volume'] >= 25)):
+        if((change[i]['Change'] >= 0.03*change[i]['Volume'] and change[i]['Name'][0] == 'B' and change[i]['Volume'] >= 40)):
             notify(change[i],3)
-        elif(change[i]['Change'] <= -0.1*change[i]['Volume'] and change[i]['Name'][0] == 'B' and change[i]['Volume'] >= 25):
+        elif(change[i]['Change'] <= -0.1*change[i]['Volume'] and change[i]['Name'][0] == 'B' and change[i]['Volume'] >= 40):
             notify(change[i],2)
       
 delay = 30
