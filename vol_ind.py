@@ -27,7 +27,7 @@ def calculateChange():
             try:
                 if(old['result'][i]['MarketName'] == new['result'][i]['MarketName']):
                     try:
-                        change[old['result'][i]['MarketName']] = {'Name':old['result'][i]['MarketName'].encode('ASCII'),'Change':((new['result'][i]['BaseVolume'] - old['result'][i]['BaseVolume'])),'Volume': new['result'][i]['BaseVolume'],'Price': new['result'][i]['Last'],'Time':str(datetime.datetime.now())}
+                        change[old['result'][i]['MarketName']] = {'Name':old['result'][i]['MarketName'].encode('ASCII'),'Change':((new['result'][i]['BaseVolume'] - old['result'][i]['BaseVolume'])),'Volume': new['result'][i]['BaseVolume'],'Price': new['result'][i]['Last'],'Price Change':((new['result'][i]['Last'] - old['result'][i]['Last'])/new['result'][i]['Last'])*100,'Time':str(datetime.datetime.now())}
                     except:
                         #print 'Exception ' + str(old['result'][i]['MarketName'])
                         continue
@@ -40,7 +40,10 @@ def calculateChange():
 
 def evaluate():
     for i in change:
-        if((change[i]['Change'] >= 0.03*change[i]['Volume'] and change[i]['Name'][0] == 'B' and change[i]['Volume'] >= 40)):
+        amount = 0.03*change[i]['Volume']
+        if(amount > 10):
+            amount = 10
+        if((change[i]['Change'] >= amount and change[i]['Name'][0] == 'B' and change[i]['Volume'] >= 20)):
             notify(change[i],3)
         elif(change[i]['Change'] <= -0.1*change[i]['Volume'] and change[i]['Name'][0] == 'B' and change[i]['Volume'] >= 40):
             notify(change[i],2)
