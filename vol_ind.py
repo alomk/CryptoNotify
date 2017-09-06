@@ -35,6 +35,8 @@ def calculateChange():
                 print str(len(new['result'])) + ' is new length'
                 print str(len(old['result'])) + ' is old length'
                 print "Caught index out of bounds"
+                print new['result']
+                print old['result']
                 return
 
 
