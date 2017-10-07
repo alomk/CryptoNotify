@@ -1,4 +1,3 @@
 python2.7 dec_ind.py &
 (sleep 450; python2.7 dec_ind.py) &
 python2.7 inc_ind.py &
-python2.7 fetch_data.py &
