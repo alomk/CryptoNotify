@@ -39,10 +39,10 @@ def calculateChange():
 
 def evaluate():
     for i in change:
-        if((change[i]['Percent Change'] <= -5 and change[i]['Volume'] >= 100 and change[i]['Name'][0] != 'E')):
+        if((change[i]['Percent Change'] <= -10 and change[i]['Volume'] >= 100 and change[i]['Name'][0] != 'E')):
             notify(change[i],0)
       
-delay = 900
+delay = 450
 change = {}
 old = json.loads(requests.get('https://bittrex.com/api/v1.1/public/getmarketsummaries').text)
 time.sleep(delay)
